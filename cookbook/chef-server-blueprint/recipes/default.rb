@@ -10,8 +10,8 @@ marker "recipe_start_rightscale" do
   template "rightscale_audit_entry.erb"
 end
 
-node["chef-server"]["api_fqdn"] = node["chef-server-blueprint"]["api_fqdn"]
-node["chef-server"]["version"] = node["chef-server-blueprint"]["version"]
+node.default["chef-server"]["api_fqdn"] = node["chef-server-blueprint"]["api_fqdn"]
+node.default["chef-server"]["version"] = node["chef-server-blueprint"]["version"]
 
 if node['chef-server-blueprint']['remote_file'].nil? || node['chef-server-blueprint']['remote_file'].empty?
   log "*** Input node['chef-server-blueprint']['remote_file'] is undefined, not setting node['chef-server']['package_file']"

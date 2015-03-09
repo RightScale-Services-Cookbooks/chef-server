@@ -1,8 +1,9 @@
 #
 # Cookbook Name:: chef-server-blueprint
 #
-
-rightscale_marker :begin
+marker "recipe_start_rightscale" do
+  template "rightscale_audit_entry.erb"
+end
 
 file "/etc/cron.hourly/chef_server_backup" do
   content %Q(
@@ -12,5 +13,3 @@ exit 0
   )
   mode 00700
 end
-
-rightscale_marker :end

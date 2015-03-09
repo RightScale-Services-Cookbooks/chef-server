@@ -2,8 +2,9 @@
 # Cookbook Name:: chef-server-blueprint
 #
 # Backup chef server to Remote Object Storage(ex: AWS S3, RackSpace CloudFiles, etc)
-
-rightscale_marker :begin
+marker "recipe_start_rightscale" do
+  template "rightscale_audit_entry.erb"
+end
 
 log "*** in recipe: chef-server-blueprint::chef-ros-backup"
 
@@ -52,5 +53,3 @@ bash "*** Uploading '#{backup_src}' to '#{cloud}' container '#{container}/chef-b
     /opt/rightscale/sandbox/bin/ros_util put --container #{container} --cloud #{cloud} --source #{backup_src} --dest "chef-backups/#{backup_dst}"
   EOH
 end
-
-rightscale_marker :end

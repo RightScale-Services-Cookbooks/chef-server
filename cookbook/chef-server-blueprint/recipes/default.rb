@@ -6,8 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-
-rightscale_marker :begin
+marker "recipe_start_rightscale" do
+  template "rightscale_audit_entry.erb"
+end
 
 node["chef-server"]["api_fqdn"] = node["chef-server-blueprint"]["api_fqdn"]
 node["chef-server"]["version"] = node["chef-server-blueprint"]["version"]
@@ -35,5 +36,3 @@ end
   
 log "*** Including recipe chef-server::default"
 include_recipe "chef-server::default"
-
-rightscale_marker :end

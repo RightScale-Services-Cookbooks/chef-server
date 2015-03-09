@@ -2,8 +2,9 @@
 # Cookbook Name:: chef-server-blueprint
 #
 # Restore chef server from Remote Object Storage(ex: AWS S3, RackSpace CloudFiles, etc)
-
-rightscale_marker :begin
+marker "recipe_start_rightscale" do
+  template "rightscale_audit_entry.erb"
+end
 
 log "*** in recipe: chef-server-blueprint::chef-ros-restore"
 
@@ -54,6 +55,3 @@ bash "*** Downloading latest backup from '#{container}/chef-backups/', cloud #{c
     #{backup_script} --restore $tmp_dir/chef-backup.tar.bz2
   EOH
 end
-
-rightscale_marker :end
-

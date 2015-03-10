@@ -55,12 +55,6 @@ b=bash "appending certs" do
 end
 b.run_action(:run)
 
-ruby_block "step1" do
-  block do
-    run_context.cookbook_compiler.compile_libraries
- end
-end
-
 log "*** calling packagecloud"
 include_recipe "packagecloud::default"
 

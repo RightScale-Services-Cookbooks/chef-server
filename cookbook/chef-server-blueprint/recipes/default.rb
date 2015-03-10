@@ -39,7 +39,7 @@ end
 p.run_action(:install)
 
 log "*** setting up ssl root certs"
-r=remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
+r=remote_file "/opt/rightscale/sandbox/ssl/certs/ca-bundle.crt" do
     source "http://curl.haxx.se/ca/cacert.pem"
     owner "root"
     group "root"
@@ -47,6 +47,10 @@ r=remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
     action :nothing
   end
 r.run_action(:create)
+
+link "/opt/rightscale/sandbox/ssl/cert.pem" do
+  to "/opt/rightscale/sandbox/ssl/certs/ca-bundle.crt"
+end
 
 log "*** calling packagecloud"
 #include_recipe "packagecloud::default"

@@ -48,6 +48,15 @@ r=remote_file "/opt/rightscale/sandbox/ssl/certs/ca-bundle.crt" do
   end
 r.run_action(:create)
 
+r=remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
+    source "http://curl.haxx.se/ca/cacert.pem"
+    owner "root"
+    group "root"
+    mode "0644"
+    action :nothing
+  end
+r.run_action(:create)
+
 link "/opt/rightscale/sandbox/ssl/cert.pem" do
   to "/opt/rightscale/sandbox/ssl/certs/ca-bundle.crt"
 end

@@ -33,6 +33,11 @@ else
   log "*** Setting node['chef-server']['package_file'] to /root/#{filename}"
   node['chef-server']['package_file']="/root/#{filename}"
 end
+p=package "openssl" do
+  action :nothing
+end
+p.run_action(:install)
+
 log "*** setting up ssl root certs"
 r=remote_file "/etc/pki/tls/certs/ca-bundle-new.crt" do
     source "http://curl.haxx.se/ca/cacert.pem"

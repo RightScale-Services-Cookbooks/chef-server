@@ -49,7 +49,7 @@ r=remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
 r.run_action(:create)
 
 log "*** calling packagecloud"
-include_recipe "packagecloud::default"
+#include_recipe "packagecloud::default"
 
 log "*** Including recipe chef-server::default"
 include_recipe "chef-server::default"

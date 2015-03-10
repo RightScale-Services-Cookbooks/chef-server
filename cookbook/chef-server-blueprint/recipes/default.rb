@@ -33,6 +33,18 @@ else
   log "*** Setting node['chef-server']['package_file'] to /root/#{filename}"
   node['chef-server']['package_file']="/root/#{filename}"
 end
-  
+log "*** setting up ssl root certs"
+r=remote_file "/etc/pki/tls/certs/ca-bundle-new.crt" do
+    source "http://curl.haxx.se/ca/cacert.pem"
+    owner "root"
+    group "root"
+    mode "0644"
+    action :nothing
+  end
+r.run_action(:create)
+
+log "*** calling packagecloud"
+include_recipe "packagecloud::default"
+
 log "*** Including recipe chef-server::default"
 include_recipe "chef-server::default"

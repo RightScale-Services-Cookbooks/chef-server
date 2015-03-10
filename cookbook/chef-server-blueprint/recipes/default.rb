@@ -39,7 +39,7 @@ end
 p.run_action(:install)
 
 log "*** setting up ssl root certs"
-r=remote_file "/etc/pki/tls/certs/ca-bundle-new.crt" do
+r=remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
     source "http://curl.haxx.se/ca/cacert.pem"
     owner "root"
     group "root"
@@ -47,13 +47,6 @@ r=remote_file "/etc/pki/tls/certs/ca-bundle-new.crt" do
     action :nothing
   end
 r.run_action(:create)
-b=bash "appending certs" do
-  code <<-EOF
-    cat /etc/pki/tls/certs/ca-bundle-new.crt >> /etc/pki/tls/certs/ca-bundle.crt
-  EOF
-  action :nothing
-end
-b.run_action(:run)
 
 log "*** calling packagecloud"
 include_recipe "packagecloud::default"

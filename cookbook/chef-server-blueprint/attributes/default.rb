@@ -1,2 +1,2 @@
-default["chef-server-blueprint"]["version"] = :latest
+default["chef-server-blueprint"]["version"] = nil
 default['packagecloud']['base_url'] = 'http://packagecloud.io'

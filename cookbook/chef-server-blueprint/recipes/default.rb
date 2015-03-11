@@ -61,6 +61,14 @@ link "/opt/rightscale/sandbox/ssl/cert.pem" do
   to "/opt/rightscale/sandbox/ssl/certs/ca-bundle.crt"
 end
 
+c=cookbook_file "/etc/profile.d/ssl.sh" do
+  source "ssl.sh"
+  owner "root"
+  group "root"
+  mode 0777
+end
+c.run_action(:create)
+
 log "*** calling packagecloud"
 #include_recipe "packagecloud::default"
 

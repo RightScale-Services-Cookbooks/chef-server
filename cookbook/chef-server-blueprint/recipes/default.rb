@@ -69,6 +69,14 @@ c=cookbook_file "/etc/profile.d/ssl.sh" do
 end
 c.run_action(:create)
 
+cookbook_file "/etc/profile.d/chef.sh" do
+  source "profile.sh"
+  owner "root"
+  group "root"
+  mode 0777
+  action :create
+end
+
 log "*** calling packagecloud"
 #include_recipe "packagecloud::default"
 

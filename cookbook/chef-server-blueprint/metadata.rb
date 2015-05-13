@@ -30,7 +30,7 @@ attribute "chef-server-blueprint/api_fqdn",
 attribute "chef-server-blueprint/version",
     :display_name => "Chef Server Version",
     :required => "optional",
-    :default => "latest",
+    :default => "12.0.8-1.el6",
     :recipes => [ "chef-server-blueprint::default" ]
     
 attribute "chef-server-blueprint/remote_file",

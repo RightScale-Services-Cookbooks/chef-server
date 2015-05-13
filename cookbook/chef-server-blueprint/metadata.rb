@@ -20,7 +20,7 @@ recipe "chef-server-blueprint::chef-ros-backup", "Backup chef server to Remote O
 recipe "chef-server-blueprint::chef-ros-restore", "Restore chef server from a  Remote Object Storage(ex: AWS S3, RackSpace CloudFiles, etc) backup"
 recipe "chef-server-blueprint::backup_schedule_enable", "Enables chef-server-blueprint::chef-ros-backup to be run hourly."
 recipe "chef-server-blueprint::backup_schedule_disable", "Disables chef-server-blueprint::chef-ros-backup from being run hourly."
-recipe "chef-server-blueprint::install-webui.rb", "installs webui"
+recipe "chef-server-blueprint::install-webui", "installs webui"
 
 attribute "chef-server-blueprint/api_fqdn",
     :display_name => "Chef Server FQDN",
